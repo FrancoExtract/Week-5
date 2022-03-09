@@ -28,8 +28,8 @@ def graph_prepare(x, y):
     """
     This function prepares a graph.
 
-    :param x: chromosome data on the x-axis
-    :param y: exon data on the y-axis
+    :param x: data on the x-axis
+    :param y: data on the y-axis
     """
 
     plt.plot(x, y, 'g-')  # Plots out the axes and makes the line green
