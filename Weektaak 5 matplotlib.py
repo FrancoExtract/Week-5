@@ -1,14 +1,5 @@
-import random
-import sys
 import pandas as pd
 import matplotlib as plt
-
-
-def clustal_file_compiler():
-    file1 = "lcl_NC_001549.1_prot_NP_054372.1_5.pim"
-    file2 = "lcl_NC_004455.1_prot_NP_758892.1_7.pim"
-    file3 = "lcl_NC_001722.1_prot_NP_056844.1_8.pim"
-    file4 = "lcl_NC_001802.1_prot_NP_057856.1_8.pim"
 
 
 def graph_prepare(x, y):
@@ -26,9 +17,32 @@ def graph_prepare(x, y):
     plt.show()  # Makes the graph show up when running the program
 
 
-def main():
-    clustal_file_compiler()
-    graph_prepare(1, 1)
+def graph_plotter(gc_list, file_name, reading_distance):
+    # calculation = seq_len / reading_distance
+    # print(f"the result of {seq_len} / {reading_distance} =\n {calculation}")
+    y = gc_list
+    x = range(len(gc_list))
+    plt.scatter(x, y, 5, c=gc_list, cmap="Reds")
+    plt.ylim([0, 100])
+    plt.title(f"GC% of {file_name}\n"
+              f"per {reading_distance} base pairs", loc="left")
+    plt.ylabel("GC content in %")
+    plt.xlabel(f"Amount of observations")
+    plt.grid(color="green", linestyle="--", linewidth=0.75)
+    # plt.savefig(f"{file_name}")
+    plt.show()
 
+
+def main():
+    # Files
+    file1 = "lcl_NC_001549.1_prot_NP_054372.1_5.pim"
+    file2 = "lcl_NC_004455.1_prot_NP_758892.1_7.pim"
+    file3 = "lcl_NC_001722.1_prot_NP_056844.1_8.pim"
+    file4 = "lcl_NC_001802.1_prot_NP_057856.1_8.pim"
+
+# Functions
+    file_list = [file1, file2, file3, file4]
+    graph_prepare(1, 1)
+    graph_plotter(..., file_list, 10000)
 
 main()
