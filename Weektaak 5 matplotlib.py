@@ -24,9 +24,25 @@ def codon_plotter():
         plt.show()
 
 
+def graph_prepare(x, y):
+    """
+    This function prepares a graph.
+
+    :param x: chromosome data on the x-axis
+    :param y: exon data on the y-axis
+    """
+
+    plt.plot(x, y, 'g-')  # Plots out the axes and makes the line green
+    plt.title("Total counts of exons per chromosome")  # Title for the graph
+    plt.xlabel("Chromosome")  # Title for the x-axis
+    plt.ylabel("Exon count")  # Title for the y-axis
+    plt.show()  # Makes the graph show up when running the program
+
+
 def main():
-    codon_plotter()
     clustal_file_compiler()
+    codon_plotter()
+    graph_prepare(1, 1)
 
 
 main()
