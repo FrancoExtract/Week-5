@@ -28,8 +28,8 @@ def graph_prepare(x, y):
     """
     This function prepares a graph.
 
-    :param x: data on the x-axis
-    :param y: data on the y-axis
+    :param x: protein sequences on the x-axis
+    :param y: match hits on the y-axis (in percentages)
     """
 
     plt.plot(x, y, 'g-')  # Plots out the axes and makes the line green
