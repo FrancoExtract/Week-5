@@ -40,9 +40,10 @@ def main():
     file3 = "lcl_NC_001722.1_prot_NP_056844.1_8.pim"
     file4 = "lcl_NC_001802.1_prot_NP_057856.1_8.pim"
 
-# Functions
+    # Functions
     file_list = [file1, file2, file3, file4]
     graph_prepare(1, 1)
     graph_plotter(..., file_list, 10000)
+
 
 main()
