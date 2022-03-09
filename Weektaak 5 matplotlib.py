@@ -11,19 +11,6 @@ def clustal_file_compiler():
     file4 = "lcl_NC_001802.1_prot_NP_057856.1_8.pim"
 
 
-def codon_plotter():
-    for element in codon_bias_list:
-        df = pd.DataFrame(element)
-        df.plot.bar()
-        plt.title(file_name)
-        plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left',
-                   borderaxespad=-3)
-        f = plt.figure()
-        f.set_figwidth(20)
-        f.set_figheight(10)
-        plt.show()
-
-
 def graph_prepare(x, y):
     """
     This function prepares a graph.
@@ -41,7 +28,6 @@ def graph_prepare(x, y):
 
 def main():
     clustal_file_compiler()
-    codon_plotter()
     graph_prepare(1, 1)
 
 
