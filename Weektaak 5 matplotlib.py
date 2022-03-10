@@ -1,5 +1,14 @@
-import pandas as pd
 import matplotlib as plt
+
+
+def file_reader(file1, file2, file3, file4):
+    with open(file1) as data1:
+        Data_List1 = []
+        for line in data1:
+            List1 = line.strip().split("   ")
+            Data_List1.append(List1)
+        for row in Data_List1:
+            print(row)
 
 
 def graph_prepare(x, y):
@@ -42,8 +51,9 @@ def main():
 
     # Functions
     file_list = [file1, file2, file3, file4]
-    graph_prepare(1, 1)
-    graph_plotter(..., file_list, 10000)
+    # graph_prepare(1, 1)
+    # graph_plotter(..., file_list, 10000)
+    file_reader(file1, file2, file3, file4)
 
 
 main()
