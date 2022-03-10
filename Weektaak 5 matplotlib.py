@@ -2,20 +2,35 @@ import matplotlib as plt
 
 
 def file_reader(file1):
+    """
+    This function reads the matrices in all files and returns the values in
+    separate lists.
+
+    :param file1: percentages of matches between the sequences
+    """
+
     with open(file1) as data1:
-        data_list1 = []
+        data_list1 = []  # List for the matrix data
         for line in data1:
-            if "100.00" in line:
-                list1 = line.strip().split("   ")
-                data_list1.append(list1)
+            if "100.00" in line:  # Checks whether 100% match is in the line
+                list1 = line.strip().split("   ")  # Strips whitespaces
+                data_list1.append(list1)  # Adds list in separate data list
         for row in data_list1:
-            print(row)
+            print(row)  # Prints the rows from the matrix
         return data_list1
 
 
-def graph_prepare(x, y):
+def data_list_processor(data_list1):
+    """This function processes the appended data list from the matrix
+    and makes it able to be passed to the histogram function.
+
+    :param data_list1: list with the matrix data per file
     """
-    This function prepares a graph.
+
+
+def histogram_prepare(x, y):
+    """
+    This function prepares a histogram for the data to be passed through.
 
     :param x: protein sequences on the x-axis
     :param y: match hits on the y-axis (in percentages)
@@ -25,23 +40,35 @@ def graph_prepare(x, y):
     plt.title("Total counts of exons per chromosome")  # Title for the graph
     plt.xlabel("Chromosome")  # Title for the x-axis
     plt.ylabel("Exon count")  # Title for the y-axis
+
+
+def histogram_data(data_list_processor):
+    """
+    This function passes the data from the matrices to the histogram_prepare
+    function and shows the data accordingly.
+
+    :param data_list_processor: data from the matrices
+    """
+
     plt.show()  # Makes the graph show up when running the program
+    # yuh = 1
+    # print(yuh)
 
 
-def graph_plotter(gc_list, file_name, reading_distance):
+# def graph_plotter(gc_list, file_name, reading_distance):
     # calculation = seq_len / reading_distance
     # print(f"the result of {seq_len} / {reading_distance} =\n {calculation}")
-    y = gc_list
-    x = range(len(gc_list))
-    plt.scatter(x, y, 5, c=gc_list, cmap="Reds")
-    plt.ylim([0, 100])
-    plt.title(f"GC% of {file_name}\n"
-              f"per {reading_distance} base pairs", loc="left")
-    plt.ylabel("GC content in %")
-    plt.xlabel(f"Amount of observations")
-    plt.grid(color="green", linestyle="--", linewidth=0.75)
+    # y = gc_list
+    # x = range(len(gc_list))
+    # plt.scatter(x, y, 5, c=gc_list, cmap="Reds")
+    # plt.ylim([0, 100])
+    # plt.title(f"GC% of {file_name}\n"
+              # f"per {reading_distance} base pairs", loc="left")
+    # plt.ylabel("GC content in %")
+    # plt.xlabel(f"Amount of observations")
+    # plt.grid(color="green", linestyle="--", linewidth=0.75)
     # plt.savefig(f"{file_name}")
-    plt.show()
+    # plt.show()
 
 
 def main():
@@ -54,7 +81,9 @@ def main():
     # Functions
     file_list = [file1, file2, file3, file4]
     file_reader(file1)
-    # graph_prepare(1, 1)
+    # data_list_processor(data_list1)
+    # histogram_prepare(1, 1)
+    # histogram_data(data_list_processor)
     # graph_plotter(..., file_list, 10000)
 
 
