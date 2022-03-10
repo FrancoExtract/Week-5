@@ -1,4 +1,4 @@
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 
 def file_reader(file):
@@ -12,49 +12,38 @@ def file_reader(file):
     with open(file) as data1:
         data_list1 = []  # List for the matrix data
         for line in data1:
-            if "#" not in line and not line.isspace():  # isspace() returns
-                # true if the string is a whitespace string. FALSE otherwise.
-                line = line.rstrip().split()
-                i = (line.index('100.00') + 1)
-                for unit in line[i:]:
+            # isspace() returns TRUE if string is whitespace; FALSE if not.
+            if "#" not in line and not line.isspace():
+                line = line.rstrip().split()  # Strips space, splits in indices
+                i = (line.index('100.00') + 1)  # Sees '100.00' as 1st index
+                for unit in line[i:]:  # Loops through 1st 'til last index
+                    # Appends values to the data list as floats
                     data_list1.append(float(unit))
         print(data_list1)
+
         return data_list1
 
 
-def data_list_processor(data_list1):
-    """This function processes the appended data list from the matrix
-    and makes it able to be passed to the histogram function.
+def histogram_prepare(data_list1):
+    """
+    This function prepares a histogram for the curated data list to be
+    passed through, and shows the data in separate bars.
 
-    :param data_list1: list with the matrix data per file
+    :param data_list1: sequence matches in the histogram
     """
 
+    x = range(len(data_list1))  # Data list passes through "x" variable
+    bin_ranges = [1, 50, 100, 150, 200, 250, 300, 350, 400, 404]
 
-def histogram_prepare(x, y):
-    """
-    This function prepares a histogram for the data to be passed through.
-
-    :param x: protein sequences on the x-axis
-    :param y: match hits on the y-axis (in percentages)
-    """
-
-    plt.plot(x, y, 'g-')  # Plots out the axes and makes the line green
-    plt.title("Total counts of exons per chromosome")  # Title for the graph
-    plt.xlabel("Chromosome")  # Title for the x-axis
-    plt.ylabel("Exon count")  # Title for the y-axis
+    plt.hist(x, bins=bin_ranges)  # Plots the x-axis gives range for the bars
+    plt.title("Percentage matches per sequence")  # Title for the graph
+    plt.xlabel("Sequence match")  # Title for the x-axis
+    plt.ylabel("Percentage (%)")  # Title for the y-axis
+    plt.ylim([0, 125])  # Viewing range 'til 125% for slightly easier reading
+    plt.show()  # Makes the graph show up when running the code
 
 
-def histogram_data(data_list_processor):
-    """
-    This function passes the data from the matrices to the histogram_prepare
-    function and shows the data accordingly.
-
-    :param data_list_processor: data from the matrices
-    """
-
-    plt.show()  # Makes the graph show up when running the program
-    # yuh = 1
-    # print(yuh)
+# -----------------------------------------------------------------------------
 
 
 # def graph_plotter(gc_list, file_name, reading_distance):
@@ -73,7 +62,7 @@ def histogram_data(data_list_processor):
 # plt.show()
 
 
-def main():
+def main(data_list1=None):
     # Files
     file1 = "lcl_NC_001549.1_prot_NP_054372.1_5.pim"
     file2 = "lcl_NC_004455.1_prot_NP_758892.1_7.pim"
@@ -81,15 +70,14 @@ def main():
     file4 = "lcl_NC_001802.1_prot_NP_057856.1_8.pim"
 
     # Functions
-    file_list = [file1, file2, file3, file4]
     file_reader(file1)
     file_reader(file2)
     file_reader(file3)
     file_reader(file4)
-    # data_list_processor(data_list1)
-    # histogram_prepare(1, 1)
-    # histogram_data(data_list_processor)
+    histogram_prepare(file_reader(data_list1))
     # graph_plotter(..., file_list, 10000)
+
+    return data_list1
 
 
 main()
