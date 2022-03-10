@@ -2,6 +2,21 @@ import pandas as pd
 import matplotlib as plt
 
 
+def read_file(file1):
+    open_file = open(file1, "r")
+    if open_file.readable:
+        print("The file is good to go!")
+    else:
+        print("Something's up with your code; check your variables...")
+    print(open_file)
+
+    # for line in file_list:
+        # line = line.split("\t")  # Makes it a list
+
+        # if line[2].contains(100.00):
+            # continue
+
+
 def graph_prepare(x, y):
     """
     This function prepares a prototype graph.
@@ -42,8 +57,11 @@ def main():
 
     # Functions
     file_list = [file1, file2, file3, file4]
-    graph_prepare(1, 1)
-    graph_plotter(..., file_list, 10000, 150000)
+    read_file(file1)
+    # graph_prepare(1, 1)
+    # graph_plotter(..., file_list, 10000, 150000)
+
+    return file_list
 
 
 main()
