@@ -5,10 +5,13 @@ def file_reader(file1):
     with open(file1) as data1:
         data_list1 = []
         for line in data1:
-            list1 = line.strip().split("   ")
-            data_list1.append(list1)
+            if "100.00" in line:
+                list1 = line.strip().split("   ")
+                data_list1.append(list1)
         for row in data_list1:
             print(row)
+        return data_list1
+
 
 def graph_prepare(x, y):
     """
