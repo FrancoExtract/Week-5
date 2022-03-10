@@ -1,15 +1,15 @@
 import matplotlib.pyplot as plt
 
 
-def file_reader(file):
+def file_reader(file1):
     """
     This function reads the matrices in all files and returns the values in
     separate lists.
 
-    :param file: percentages of matches between the sequences
+    :param file1: percentages of matches between the sequences
     """
 
-    with open(file) as data1:
+    with open(file1) as data1:
         data_list1 = []  # List for the matrix data
         for line in data1:
             # isspace() returns TRUE if string is whitespace; FALSE if not.
@@ -17,7 +17,7 @@ def file_reader(file):
                 line = line.rstrip().split()  # Strips space, splits in indices
                 i = (line.index('100.00') + 1)  # Sees '100.00' as 1st index
                 for unit in line[i:]:  # Loops through 1st 'til last index
-                    # Appends values to the data list as floats
+                    # Append values to the data list as floats
                     data_list1.append(float(unit))
         print(data_list1)
 
@@ -62,7 +62,7 @@ def histogram_prepare(data_list1):
 # plt.show()
 
 
-def main(data_list1=None):
+def main():
     # Files
     file1 = "lcl_NC_001549.1_prot_NP_054372.1_5.pim"
     file2 = "lcl_NC_004455.1_prot_NP_758892.1_7.pim"
@@ -71,13 +71,11 @@ def main(data_list1=None):
 
     # Functions
     file_reader(file1)
-    file_reader(file2)
-    file_reader(file3)
-    file_reader(file4)
-    histogram_prepare(file_reader(data_list1))
+    # file_reader(file2)
+    # file_reader(file3)
+    # file_reader(file4)
+    histogram_prepare(file_reader(file1))
     # graph_plotter(..., file_list, 10000)
-
-    return data_list1
 
 
 main()
