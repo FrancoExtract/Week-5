@@ -1,22 +1,24 @@
 import matplotlib as plt
 
 
-def file_reader(file1):
+def file_reader(file):
     """
     This function reads the matrices in all files and returns the values in
     separate lists.
 
-    :param file1: percentages of matches between the sequences
+    :param file: percentages of matches between the sequences
     """
 
-    with open(file1) as data1:
+    with open(file) as data1:
         data_list1 = []  # List for the matrix data
         for line in data1:
-            if "100.00" in line:  # Checks whether 100% match is in the line
-                list1 = line.strip().split("   ")  # Strips whitespaces
-                data_list1.append(list1)  # Adds list in separate data list
-        for row in data_list1:
-            print(row)  # Prints the rows from the matrix
+            if "#" not in line and not line.isspace():  # isspace() returns
+                # true if the string is a whitespace string. FALSE otherwise.
+                line = line.rstrip().split()
+                i = (line.index('100.00') + 1)
+                for unit in line[i:]:
+                    data_list1.append(float(unit))
+        print(data_list1)
         return data_list1
 
 
@@ -56,19 +58,19 @@ def histogram_data(data_list_processor):
 
 
 # def graph_plotter(gc_list, file_name, reading_distance):
-    # calculation = seq_len / reading_distance
-    # print(f"the result of {seq_len} / {reading_distance} =\n {calculation}")
-    # y = gc_list
-    # x = range(len(gc_list))
-    # plt.scatter(x, y, 5, c=gc_list, cmap="Reds")
-    # plt.ylim([0, 100])
-    # plt.title(f"GC% of {file_name}\n"
-              # f"per {reading_distance} base pairs", loc="left")
-    # plt.ylabel("GC content in %")
-    # plt.xlabel(f"Amount of observations")
-    # plt.grid(color="green", linestyle="--", linewidth=0.75)
-    # plt.savefig(f"{file_name}")
-    # plt.show()
+# calculation = seq_len / reading_distance
+# print(f"the result of {seq_len} / {reading_distance} =\n {calculation}")
+# y = gc_list
+# x = range(len(gc_list))
+# plt.scatter(x, y, 5, c=gc_list, cmap="Reds")
+# plt.ylim([0, 100])
+# plt.title(f"GC% of {file_name}\n"
+# f"per {reading_distance} base pairs", loc="left")
+# plt.ylabel("GC content in %")
+# plt.xlabel(f"Amount of observations")
+# plt.grid(color="green", linestyle="--", linewidth=0.75)
+# plt.savefig(f"{file_name}")
+# plt.show()
 
 
 def main():
@@ -81,6 +83,9 @@ def main():
     # Functions
     file_list = [file1, file2, file3, file4]
     file_reader(file1)
+    file_reader(file2)
+    file_reader(file3)
+    file_reader(file4)
     # data_list_processor(data_list1)
     # histogram_prepare(1, 1)
     # histogram_data(data_list_processor)
