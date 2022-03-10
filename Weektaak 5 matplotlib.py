@@ -1,5 +1,23 @@
-import pandas as pd
 import matplotlib as plt
+
+
+def file_reader(file1, file2, file3, file4):
+    """
+    This function reads each of the 4 NCBI files and splits them in a list.
+
+    :param file1: file 054372.1_5 from NCBI
+    :param file2: file 758892.1_7 from NCBI
+    :param file3: file 056844.1_8 from NCBI
+    :param file4: file 057856.1_8 from NCBI
+    """
+
+    with open(file1) as data1:
+        Data_List1 = []
+        for line in data1:
+            List1 = line.strip().split("   ")
+            Data_List1.append(List1)
+        for row in Data_List1:
+            print(row)
 
 
 def graph_prepare(x, y):
@@ -42,8 +60,11 @@ def main():
 
     # Functions
     file_list = [file1, file2, file3, file4]
-    graph_prepare(1, 1)
-    graph_plotter(..., file_list, 10000)
+    file_reader(file1, file2, file3, file4)
+    # graph_prepare(1, 1)
+    # graph_plotter(..., file_list, 10000, 150000)
+
+    return file_list
 
 
 main()
