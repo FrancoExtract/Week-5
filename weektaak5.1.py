@@ -16,7 +16,7 @@ def file_acceptor():
     and lets the code run through."""
     file_name = sys.argv[1:1]  # Asks for the code to be run
     file_name = str(file_name)
-    file_name = "immunidefficiencyvirus.FASTA"
+    file_name = "newhivfileweek5.FASTA"
     return file_name
 
 
