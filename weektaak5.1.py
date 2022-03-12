@@ -2,7 +2,10 @@
 # Sequence-to-ClustalO Converter
 # By Sam Sokolov
 
+
+# Imports
 import random
+import os
 import sys
 
 
