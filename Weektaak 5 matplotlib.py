@@ -1,18 +1,21 @@
+import math
+import seaborn as sb
 import matplotlib.pyplot as plt
+import numpy as np
 
 
-def file_reader(file1):
+def file_reader(file):
     """
     This function reads the matrices in all files and returns the values in
     separate lists.
 
-    :param file1: percentages of matches between the sequences
+    :param file: percentages of matches between the sequences
     """
 
-    with open(file1) as data1:
+    with open(file) as data1:
         data_list1 = []  # List for the matrix data
         for line in data1:
-            # isspace() returns TRUE if string is whitespace; FALSE if not.
+            # isspace() returns TRUE if string is whitespace; FALSE if not
             if "#" not in line and not line.isspace():
                 line = line.rstrip().split()  # Strips space, splits in indices
                 i = (line.index('100.00') + 1)  # Sees '100.00' as 1st index
@@ -24,42 +27,56 @@ def file_reader(file1):
         return data_list1
 
 
+# def read_result(file):
+# file_list = []
+
+# with open(file, "r") as f:
+# lines = f.readlines()[6:]
+# for line in lines:
+# try:
+# x = line.split("100.00   ")
+# y = x[1].split("   ")
+# y[-1] = y[-1].strip()
+# for i in y:
+# file_list.append(float(i))
+# except IndexError:
+# pass
+# return file_list
+
+
 def histogram_prepare(data_list1):
     """
     This function prepares a histogram for the curated data list to be
     passed through, and shows the data in separate bars.
 
-    :param data_list1: sequence matches in the histogram
+    :param data_list1: data from the matrix with matches
     """
 
     x = range(len(data_list1))  # Data list passes through "x" variable
-    bin_ranges = [1, 50, 100, 150, 200, 250, 300, 350, 400, 404]
+    # bin_ranges = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
+    bin_ranges = int(math.sqrt(len(data_list1)))  # Ranges for histogram bars
 
     plt.hist(x, bins=bin_ranges)  # Plots the x-axis gives range for the bars
-    plt.title("Percentage matches per sequence")  # Title for the graph
-    plt.xlabel("Sequence match")  # Title for the x-axis
-    plt.ylabel("Percentage (%)")  # Title for the y-axis
-    plt.ylim([0, 125])  # Viewing range 'til 125% for slightly easier reading
+    plt.title("Histogram of percentage matrix")  # Title for the graph
+    plt.xlabel("Percentage identity")  # Title for the x-axis
+    plt.ylabel("Alignment hits")  # Title for the y-axis
+    plt.ylim([0, 20])  # Viewing range 'til 20% for slightly easier reading
     plt.show()  # Makes the graph show up when running the code
 
+    # sb.distplot(data_list1, hist=False, kde=True,
+    # kde_kws={'shade': True, 'linewidth': 1}, )
+    # plt.title("Histogram of percentage matrix")
+    # plt.xlabel("Percentage identity")
+    # plt.ylabel("Alignment hits")
+    # plt.ylim([0, 20])
+    # plt.show()
 
-# -----------------------------------------------------------------------------
 
+def prototype_hist():
+    x = np.random.normal(170, 10, 250)
 
-# def graph_plotter(gc_list, file_name, reading_distance):
-# calculation = seq_len / reading_distance
-# print(f"the result of {seq_len} / {reading_distance} =\n {calculation}")
-# y = gc_list
-# x = range(len(gc_list))
-# plt.scatter(x, y, 5, c=gc_list, cmap="Reds")
-# plt.ylim([0, 100])
-# plt.title(f"GC% of {file_name}\n"
-# f"per {reading_distance} base pairs", loc="left")
-# plt.ylabel("GC content in %")
-# plt.xlabel(f"Amount of observations")
-# plt.grid(color="green", linestyle="--", linewidth=0.75)
-# plt.savefig(f"{file_name}")
-# plt.show()
+    plt.hist(x)
+    plt.show()
 
 
 def main():
@@ -71,11 +88,12 @@ def main():
 
     # Functions
     file_reader(file1)
-    # file_reader(file2)
-    # file_reader(file3)
-    # file_reader(file4)
-    histogram_prepare(file_reader(file1))
-    # graph_plotter(..., file_list, 10000)
+    file_reader(file2)
+    file_reader(file3)
+    file_reader(file4)
+    histogram_prepare(file1)
+    # prototype_hist()
+    # read_result(file1)
 
 
 main()
