@@ -19,7 +19,7 @@ def file_acceptor():
     and lets the code run through."""
     file_name = sys.argv[1:1]  # Asks for the code to be run
     file_name = str(file_name)
-    file_name = r"newhivfileweek5.fasta"
+    file_name = r"C:\Users\franc\pythonProject\Weektaken\Course 3\Week 5\newhivfileweek5.fasta"
     return file_name
 
 
@@ -61,7 +61,7 @@ def sequence_randomizer(sequence_dict):
 def file_writer(randomized_dict):
     for sequence_name, nested_keys in randomized_dict.items():
         header_buffer = sequence_name.split('[')
-        file = open(header_buffer[0], "a")
+        file = open('newhivfileweek5.fasta', "a")
         for key, sequence in nested_keys.items():
             header = f"{header_buffer[0]}_{key+1}"
             file.write(header)
