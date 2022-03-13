@@ -19,7 +19,7 @@ def file_acceptor():
     and lets the code run through."""
     file_name = sys.argv[1:1]  # Asks for the code to be run
     file_name = str(file_name)
-    file_name = "newhivfileweek5.FASTA"
+    file_name = r"newhivfileweek5.fasta"
     return file_name
 
 
